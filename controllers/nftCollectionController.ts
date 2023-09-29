@@ -5,23 +5,23 @@ import {
   getNftCollection,
 } from "../models/nftCollection";
 export const nftCollectionController = {
-  createNftCollection: (req: express.Request, res: express.Response) => {
+  createNftCollection: async (req: express.Request, res: express.Response) => {
     try {
-      createNftCollection();
+      const result = await createNftCollection();
     } catch (error) {
       throw error;
     }
   },
-  deleteNftCollection: (req: express.Request, res: express.Response) => {
+  deleteNftCollection: async (req: express.Request, res: express.Response) => {
     try {
-      deleteNftCollection();
+      const result = await deleteNftCollection();
     } catch (error) {
       throw error;
     }
   },
-  getNftCollection: (req: express.Request, res: express.Response) => {
+  getNftCollection: async (req: express.Request, res: express.Response) => {
     try {
-      getNftCollection();
+      const result = await getNftCollection();
     } catch (error) {
       throw error;
     }
