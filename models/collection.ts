@@ -1,6 +1,5 @@
 import { pool } from "../db";
 import { collectionQueries } from "../helpers/queries";
-
 interface collection {
   name: string;
   description: string;

@@ -18,7 +18,6 @@ const verifyToken = (
           .status(403)
           .json({ status: "error", message: "Invalid token." });
       }
-      // const currentUser = user;
       next();
     });
   } else {

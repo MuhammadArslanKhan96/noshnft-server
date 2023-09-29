@@ -62,13 +62,12 @@ const loginUser = async (User: user) => {
       const token = jwt.sign({ id: userId }, jwtKey, {
         expiresIn: "1h",
       });
-
-      return { status: "success", message: "Logged in" };
+      return { flag: 200 };
     } else {
-      return { status: "error", message: "Invalid credentials." };
+      return { flag: 401 };
     }
   } else {
-    return { status: "error", message: "User not found" };
+    return { flag: 404 };
   }
 };
 
