@@ -62,7 +62,7 @@ const loginUser = async (User: user) => {
       const token = jwt.sign({ id: userId }, jwtKey, {
         expiresIn: "1h",
       });
-      return { flag: 200 };
+      return { flag: 200, token, userId };
     } else {
       return { flag: 401 };
     }
