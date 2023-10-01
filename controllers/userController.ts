@@ -56,7 +56,7 @@ export const loginUserController = async (
   try {
     const result = await loginUser(req.body);
     if (result.flag == 200) {
-      res.status(200).json({ status: "Success", message: "Logged in" });
+      res.status(200).json({ status: "Success", message: "Logged in", result });
     }
     if (result.flag == 401) {
       res.status(401).json({ status: "Error", message: "Invalid credentials" });
