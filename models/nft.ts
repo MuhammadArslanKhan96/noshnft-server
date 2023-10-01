@@ -44,6 +44,7 @@ const createNft = async (Nft: nft) => {
     ]);
     const nftId = result.rows[0].id;
     console.log(nftId);
+    console.log(collectionId);
     await pool.query(nftCollectionQueries.createNftCollection, [
       collectionId,
       nftId,
