@@ -75,8 +75,10 @@ const getNft = async (id: string) => {
     throw error;
   }
 };
-const getAllNfts = async (req: express.Request, res: express.Response) => {
+const getAllNfts = async () => {
   try {
+    const result = await pool.query(nftQueries.getAllNfts);
+    return result.rows;
   } catch (error) {
     throw error;
   }

@@ -64,7 +64,10 @@ export const getAllNftsController = async (
   res: express.Response
 ) => {
   try {
-    await getAllNfts(req, res);
+    const result = await getAllNfts();
+    res
+      .status(200)
+      .json({ status: "Success", message: "Nfts fetched", result });
   } catch (error) {
     res.status(400).send(error);
   }
