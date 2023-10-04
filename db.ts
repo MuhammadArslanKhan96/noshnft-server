@@ -35,7 +35,7 @@ createTable(
 
 createTable(
   "nfts",
-  "id SERIAL PRIMARY KEY, name TEXT, nft_url TEXT, description TEXT, royalties TEXT, size TEXT, properties TEXT, price TEXT, on_sale BOOLEAN, primary_owner INTEGER REFERENCES users(id), current_owner INTEGER REFERENCES users(id)"
+  "id SERIAL PRIMARY KEY, name TEXT, nft_url TEXT, image_name TEXT, image_url TEXT, description TEXT, royalties TEXT, size TEXT, properties TEXT, price TEXT, on_sale BOOLEAN, primary_owner INTEGER REFERENCES users(id), current_owner INTEGER REFERENCES users(id)"
 );
 
 createTable(
