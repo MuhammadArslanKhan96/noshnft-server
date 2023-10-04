@@ -45,7 +45,7 @@ export const signUpUserController = async (
     const result = await signUpUser(req.body);
     res.status(201).json({ status: "Success", message: "User added.", result });
   } catch (error) {
-    res.status(401).send(error);
+    res.status(401).json({ status: "Error", message: "Email already exists." });
   }
 };
 
@@ -56,7 +56,11 @@ export const loginUserController = async (
   try {
     const result = await loginUser(req.body);
     if (result.flag == 200) {
-      res.status(200).json({ status: "Success", message: "Logged in", result });
+      res.status(200).json({
+        status: "Success",
+        message: "Logged in",
+        result,
+      });
     }
     if (result.flag == 401) {
       res.status(401).json({ status: "Error", message: "Invalid credentials" });

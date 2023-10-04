@@ -38,7 +38,7 @@ const signUpUser = async (User: user) => {
   const { name, email, password } = User;
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
-    const result = pool.query(userQueries.createUser, [
+    const result = await pool.query(userQueries.createUser, [
       name,
       email,
       hashedPassword,

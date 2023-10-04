@@ -16,7 +16,10 @@ const verifyToken = (
       if (err) {
         return res
           .status(403)
-          .json({ status: "error", message: "Invalid token." });
+          .json({
+            status: "error",
+            message: "Your session has expired. Login again.",
+          });
       }
       next();
     });
