@@ -6,7 +6,6 @@ import collectionRouter from "./routes/collectionRoutes";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import multer from "multer";
 import crypto from "crypto";
-import { pool } from "./db";
 const app = express();
 const PORT = 8080;
 
@@ -36,25 +35,17 @@ app.post(
   "/create/image",
   upload.single("file-upload"),
   async (req: express.Request, res: express.Response) => {
-    console.log("req.body", req.body);
-    console.log("req.file", req.file);
-    console.log("req.file.buffer", req.file?.buffer);
-    req.file?.buffer;
+    const imageName = randomImageName();
     const params = {
       Bucket: bucketName,
-      Key: randomImageName(),
+      Key: imageName,
       Body: req.file?.buffer,
       ContentType: req.file?.mimetype,
     };
     const command = new PutObjectCommand(params);
     await s3.send(command);
-    const imageName = randomImageName();
     const imageUrl = `https://${bucketName}.s3.amazonaws.com/${imageName}`;
-    await pool.query(
-      "INSERT INTO nfts (image_name, image_url) VALUES ($1, $2)",
-      [imageName, imageUrl]
-    );
-    res.send({});
+    res.status(200).json({ imageUrl, imageName });
   }
 );
 

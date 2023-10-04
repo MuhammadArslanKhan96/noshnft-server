@@ -4,6 +4,8 @@ import { nftQueries, nftCollectionQueries } from "../helpers/queries";
 interface nft {
   name: string;
   nftUrl: string;
+  imageName: string;
+  imageUrl: string;
   description: string;
   royalties: string;
   size: string;
@@ -20,6 +22,8 @@ const createNft = async (Nft: nft) => {
     const {
       name,
       nftUrl,
+      imageName,
+      imageUrl,
       description,
       royalties,
       size,
@@ -30,9 +34,12 @@ const createNft = async (Nft: nft) => {
       currentOwner,
       collectionId,
     } = Nft;
+
     const result = await pool.query(nftQueries.createNft, [
       name,
       nftUrl,
+      imageName,
+      imageUrl,
       description,
       royalties,
       size,
@@ -43,8 +50,6 @@ const createNft = async (Nft: nft) => {
       currentOwner,
     ]);
     const nftId = result.rows[0].id;
-    console.log(nftId);
-    console.log(collectionId);
     await pool.query(nftCollectionQueries.createNftCollection, [
       collectionId,
       nftId,
