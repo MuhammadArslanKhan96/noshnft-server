@@ -5,6 +5,7 @@ import nftRouter from "./routes/nftRoutes";
 import collectionRouter from "./routes/collectionRoutes";
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import multer from "multer";
+import crypto from "crypto";
 const app = express();
 const PORT = 8080;
 
@@ -27,6 +28,9 @@ const s3 = new S3Client({
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
+const randomImageName = (bytes = 32) =>
+  crypto.randomBytes(bytes).toString("hex");
+
 app.post(
   "/create/image",
   upload.single("file-upload"),
@@ -37,7 +41,7 @@ app.post(
     req.file?.buffer;
     const params = {
       Bucket: bucketName,
-      Key: req.file?.originalname,
+      Key: randomImageName(),
       Body: req.file?.buffer,
       ContentType: req.file?.mimetype,
     };
