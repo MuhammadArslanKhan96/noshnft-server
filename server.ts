@@ -29,7 +29,7 @@ const upload = multer({ storage: storage });
 
 app.post(
   "/create/image",
-  upload.single("image"),
+  upload.single("file-upload"),
   async (req: express.Request, res: express.Response) => {
     console.log("req.body", req.body);
     console.log("req.file", req.file);
