@@ -6,6 +6,7 @@ import {
   updatePassword,
   getAllUser,
   getUserById,
+  getUserContext,
 } from "../models/user";
 
 export const getAllUserController = async (
@@ -19,6 +20,18 @@ export const getAllUserController = async (
       .json({ status: "Success", message: "User fetched.", result });
   } catch (error) {
     res.status(401).send(error);
+  }
+};
+
+export const getUserContextController = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const result = await getUserContext(req.headers.authorization as string);
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(400).send(error);
   }
 };
 

@@ -13,6 +13,19 @@ interface user {
   newPassword: string;
 }
 
+const getUserContext = async (token: string) => {
+  try {
+    const decodedToken = jwt.decode(token);
+    if (typeof decodedToken === "object" && decodedToken !== null) {
+      const userId = decodedToken.id;
+      const result = await pool.query(userQueries.getUserById, [userId]);
+      return result.rows[0];
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
 // Get All Users
 const getAllUser = async () => {
   try {
@@ -97,6 +110,7 @@ const updatePassword = async (User: user) => {
 };
 
 export {
+  getUserContext,
   signUpUser,
   loginUser,
   deleteUser,
