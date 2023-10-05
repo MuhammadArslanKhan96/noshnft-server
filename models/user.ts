@@ -57,13 +57,14 @@ const loginUser = async (User: user) => {
     const user = result.rows[0];
     const userId = user.id;
     const name = user.name;
+    const email = user.email;
     const match = await bcrypt.compare(password, user.password);
     if (match) {
       if (!jwtKey) throw new Error("JWT secret key not defined");
       const token = jwt.sign({ id: userId }, jwtKey, {
         expiresIn: "1h",
       });
-      return { flag: 200, token, userId, name };
+      return { flag: 200, token, userId, name, email };
     } else {
       return { flag: 401 };
     }
