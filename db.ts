@@ -29,6 +29,11 @@ createTable(
 );
 
 createTable(
+  "follows",
+  "id SERIAL PRIMARY KEY, follower_id INTEGER REFERENCES users(id), following_id INTEGER REFERENCES users(id), UNIQUE(follower_id, following_id)"
+);
+
+createTable(
   "collection",
   "id SERIAL PRIMARY KEY, name TEXT, description TEXT, primary_owner INTEGER REFERENCES users(id)"
 );
