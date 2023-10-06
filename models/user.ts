@@ -11,6 +11,13 @@ interface user {
   email: string;
   password: string;
   newPassword: string;
+  bio: string;
+  website: string;
+  facebook: string;
+  twitter: string;
+  telegram: string;
+  imageName: string;
+  imageUrl: string;
 }
 
 // Get User For Context API
@@ -110,14 +117,38 @@ const updatePassword = async (User: user) => {
   }
 };
 
-const updateUser = async () => {
+// Update User Profile
+const updateUser = async (User: user, id: string) => {
   try {
-    const result = await pool.query(userQueries.updateUser);
-    return result.rows;
+    const {
+      name,
+      email,
+      bio,
+      website,
+      facebook,
+      twitter,
+      telegram,
+      imageName,
+      imageUrl,
+    } = User;
+    const result = await pool.query(userQueries.updateUser, [
+      name,
+      email,
+      bio,
+      website,
+      facebook,
+      twitter,
+      telegram,
+      imageName,
+      imageUrl,
+      id,
+    ]);
+    return result.rowCount;
   } catch (error) {
     throw error;
   }
 };
+
 export {
   getUserContext,
   signUpUser,

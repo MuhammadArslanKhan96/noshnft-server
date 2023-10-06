@@ -7,6 +7,7 @@ import {
   getAllUser,
   getUserById,
   getUserContext,
+  updateUser,
 } from "../models/user";
 
 export const getAllUserController = async (
@@ -112,6 +113,20 @@ export const updatePasswordController = async (
     } else if (result.message === "User not found") {
       res.status(401).json({ status: "Error", message: "User not found" });
     }
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+export const updateUserController = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const result = await updateUser(req.body, req.params.id);
+    res
+      .status(200)
+      .json({ status: "Success", message: "User updated", result });
   } catch (error) {
     res.status(500).send(error);
   }
