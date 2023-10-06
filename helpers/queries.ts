@@ -5,6 +5,8 @@ export const userQueries = {
   getAllUser: "SELECT * FROM users",
   getUserById: "SELECT * FROM users WHERE id = $1",
   updatePassword: "UPDATE users SET password = $1 WHERE email = $2",
+  updateUser:
+    "UPDATE users SET name = $1, email = $2, bio = $3, website = $4, facebook = $5, twitter = $6, telegram = $7, image_name = $8, image_url = $9 WHERE id = $10",
 };
 
 export const nftQueries = {

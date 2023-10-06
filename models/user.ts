@@ -13,6 +13,7 @@ interface user {
   newPassword: string;
 }
 
+// Get User For Context API
 const getUserContext = async (token: string) => {
   try {
     const decodedToken = jwt.decode(token);
@@ -109,6 +110,14 @@ const updatePassword = async (User: user) => {
   }
 };
 
+const updateUser = async () => {
+  try {
+    const result = await pool.query(userQueries.updateUser);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
 export {
   getUserContext,
   signUpUser,
@@ -117,4 +126,5 @@ export {
   updatePassword,
   getAllUser,
   getUserById,
+  updateUser,
 };
