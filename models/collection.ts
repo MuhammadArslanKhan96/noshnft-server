@@ -26,17 +26,16 @@ const deleteCollection = async () => {
 };
 const getCollection = async (id: string) => {
   try {
-    const result = await pool.query(collectionQueries.getCollection, [id]);
+    const result = await pool.query(collectionQueries.getCollectionById, [id]);
     return result.rows;
   } catch (error) {
     throw error;
   }
 };
+
 const getAllCollections = async () => {
-  try {
-  } catch (error) {
-    throw error;
-  }
+  const result = await pool.query(collectionQueries.getAllcollection);
+  return result.rows;
 };
 
 export { createCollection, deleteCollection, getCollection, getAllCollections };
