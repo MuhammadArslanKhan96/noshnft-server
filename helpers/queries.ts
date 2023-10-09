@@ -15,6 +15,7 @@ export const nftQueries = {
   deleteNft: "DELETE FROM nfts WHERE id = $1",
   buyNft: "UPDATE nfts SET current_owner = $1 WHERE id = $2",
   getNft: "SELECT * FROM nfts WHERE current_owner = $1",
+  getNftById: "SELECT * FROM nfts WHERE id = $1",
   forSaleNft: "SELECT * FROM nfts where current_owner != $1",
   getAllNfts: "SELECT * FROM nfts",
   updateNftStatus: "UPDATE nfts SET on_sale = $1 WHERE id = $2",

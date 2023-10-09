@@ -5,6 +5,7 @@ import {
   deleteNftController,
   forSaleNftController,
   getAllNftsController,
+  getNftByIdController,
   getNftController,
   updateNftStatusController,
 } from "../controllers/nftController";
@@ -18,5 +19,6 @@ nftRouter.get("/get/:id", getNftController);
 nftRouter.get("/getsale/:id", forSaleNftController);
 nftRouter.get("/getAll", getAllNftsController);
 nftRouter.put("/update-nft/:id", updateNftStatusController);
+nftRouter.get("/get-nft/:id", getNftByIdController);
 
 export default nftRouter;

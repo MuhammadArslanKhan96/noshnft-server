@@ -7,6 +7,7 @@ import {
   buyNft,
   forSaleNfts,
   updateNftStatus,
+  getNftById,
 } from "../models/nft";
 
 export const createNftController = async (
@@ -91,6 +92,18 @@ export const updateNftStatusController = async (
   res: express.Response
 ) => {
   const result = await updateNftStatus(req.params.id, req.body.status);
+  res.status(200).json({ status: "Success", message: "Nft Updated", result });
+  try {
+  } catch (error) {
+    res.status(401).send(error);
+  }
+};
+
+export const getNftByIdController = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  const result = await getNftById(req.params.id);
   res.status(200).json({ status: "Success", message: "Nft Updated", result });
   try {
   } catch (error) {

@@ -14,12 +14,10 @@ const verifyToken = (
     if (!jwtKey) throw new Error("JWT secret key not defined");
     jwt.verify(token, jwtKey, (err, user) => {
       if (err) {
-        return res
-          .status(403)
-          .json({
-            status: "error",
-            message: "Your session has expired. Login again.",
-          });
+        return res.status(403).json({
+          status: "error",
+          message: "Your session has expired. Login again.",
+        });
       }
       next();
     });
