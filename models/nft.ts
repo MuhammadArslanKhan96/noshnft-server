@@ -97,4 +97,24 @@ const forSaleNfts = async (id: string) => {
   }
 };
 
-export { createNft, deleteNft, getNft, getAllNfts, buyNft, forSaleNfts };
+const updateNftStatus = async (nftId: string, status: boolean) => {
+  try {
+    const result = await pool.query(nftQueries.updateNftStatus, [
+      status,
+      nftId,
+    ]);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export {
+  createNft,
+  deleteNft,
+  getNft,
+  getAllNfts,
+  buyNft,
+  forSaleNfts,
+  updateNftStatus,
+};

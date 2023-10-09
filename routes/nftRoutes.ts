@@ -6,6 +6,7 @@ import {
   forSaleNftController,
   getAllNftsController,
   getNftController,
+  updateNftStatusController,
 } from "../controllers/nftController";
 import verifyToken from "../middlewares/auth";
 const nftRouter = express.Router();
@@ -16,5 +17,6 @@ nftRouter.put("/update/:id", buyNftController);
 nftRouter.get("/get/:id", getNftController);
 nftRouter.get("/getsale/:id", forSaleNftController);
 nftRouter.get("/getAll", getAllNftsController);
+nftRouter.put("/update-nft/:id", updateNftStatusController);
 
 export default nftRouter;
