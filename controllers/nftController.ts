@@ -8,6 +8,7 @@ import {
   forSaleNfts,
   updateNftStatus,
   getNftById,
+  getNftByPrimary,
 } from "../models/nft";
 
 export const createNftController = async (
@@ -104,6 +105,20 @@ export const getNftByIdController = async (
   res: express.Response
 ) => {
   const result = await getNftById(req.params.id);
+  res
+    .status(200)
+    .json({ status: "Success", message: "Nft Fetched by Id", result });
+  try {
+  } catch (error) {
+    res.status(401).send(error);
+  }
+};
+
+export const getNftByPrimaryController = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  const result = await getNftByPrimary(req.params.id);
   res
     .status(200)
     .json({ status: "Success", message: "Nft Fetched by Id", result });

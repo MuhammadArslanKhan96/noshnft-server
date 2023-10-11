@@ -7,6 +7,7 @@ import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
 import multer from "multer";
 import crypto from "crypto";
 import nftCollectionRouter from "./routes/nftCollectionRoutes";
+import followRouter from "./routes/followRoutes";
 const app = express();
 const PORT = 8080;
 
@@ -58,6 +59,7 @@ app.use("/user", userRouter);
 app.use("/nfts", nftRouter);
 app.use("/collection", collectionRouter);
 app.use("/nftcollection", nftCollectionRouter);
+app.use("/follow", followRouter);
 
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);

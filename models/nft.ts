@@ -118,6 +118,15 @@ const getNftById = async (nftId: string) => {
   }
 };
 
+const getNftByPrimary = async (id: string) => {
+  try {
+    const result = await pool.query(nftQueries.getNftByPrimary, [id]);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   createNft,
   deleteNft,
@@ -127,4 +136,5 @@ export {
   forSaleNfts,
   updateNftStatus,
   getNftById,
+  getNftByPrimary,
 };

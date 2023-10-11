@@ -20,6 +20,7 @@ export const nftQueries = {
   forSaleNft: "SELECT * FROM nfts where current_owner != $1",
   getAllNfts: "SELECT * FROM nfts",
   updateNftStatus: "UPDATE nfts SET on_sale = $1 WHERE id = $2",
+  getNftByPrimary: "SELECT * FROM nfts WHERE primary_owner = $1",
 };
 
 export const collectionQueries = {
