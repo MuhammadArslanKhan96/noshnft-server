@@ -42,7 +42,7 @@ export const buyNftController = async (
   res: express.Response
 ) => {
   try {
-    const result = await buyNft(req.body.id, req.params.id);
+    const result = await buyNft(req.body.id, req.body.status, req.params.id);
     res.status(200).json({ status: "Success", message: "Nft bought", result });
   } catch (error) {
     res.status(400).send(error);
@@ -104,7 +104,9 @@ export const getNftByIdController = async (
   res: express.Response
 ) => {
   const result = await getNftById(req.params.id);
-  res.status(200).json({ status: "Success", message: "Nft Updated", result });
+  res
+    .status(200)
+    .json({ status: "Success", message: "Nft Fetched by Id", result });
   try {
   } catch (error) {
     res.status(401).send(error);

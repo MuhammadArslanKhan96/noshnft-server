@@ -38,4 +38,21 @@ const getAllCollections = async () => {
   return result.rows;
 };
 
-export { createCollection, deleteCollection, getCollection, getAllCollections };
+const getCollectionByUserId = async (id: string) => {
+  try {
+    const result = await pool.query(collectionQueries.getCollectionByUserId, [
+      id,
+    ]);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export {
+  createCollection,
+  deleteCollection,
+  getCollection,
+  getAllCollections,
+  getCollectionByUserId,
+};

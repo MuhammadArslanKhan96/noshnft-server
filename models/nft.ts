@@ -64,9 +64,9 @@ const deleteNft = async (req: express.Request, res: express.Response) => {
     throw error;
   }
 };
-const buyNft = async (nftId: number, id: string) => {
+const buyNft = async (nftId: number, status: boolean, id: string) => {
   try {
-    const result = await pool.query(nftQueries.buyNft, [id, nftId]);
+    const result = await pool.query(nftQueries.buyNft, [id, status, nftId]);
     return result;
   } catch (error) {
     throw error;

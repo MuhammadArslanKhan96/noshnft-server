@@ -4,6 +4,7 @@ import {
   deleteCollection,
   getCollection,
   getAllCollections,
+  getCollectionByUserId,
 } from "../models/collection";
 
 export const createCollectionController = async (
@@ -54,6 +55,22 @@ export const getAllCollectionController = async (
 ) => {
   try {
     const result = await getAllCollections();
+    res.status(200).json({
+      status: "Success",
+      message: "Fetched all collections",
+      result,
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getCollectionByUserIdController = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const result = await getCollectionByUserId(req.params.id);
     res.status(200).json({
       status: "Success",
       message: "Fetched all collections",
