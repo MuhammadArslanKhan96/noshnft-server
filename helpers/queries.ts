@@ -21,6 +21,10 @@ export const nftQueries = {
   getAllNfts: "SELECT * FROM nfts",
   updateNftStatus: "UPDATE nfts SET on_sale = $1 WHERE id = $2",
   getNftByPrimary: "SELECT * FROM nfts WHERE primary_owner = $1",
+  likeNft: "INSERT INTO likes (user_id, nft_id) VALUES ($1, $2)",
+  unlikeNft: "DELETE FROM likes WHERE user_id = $1 AND nft_id = $2",
+  getLikedNft:
+    "SELECT nfts.* FROM nfts JOIN likes ON nfts.id = likes.nft_id WHERE likes.user_id = $1",
 };
 
 export const collectionQueries = {

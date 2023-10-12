@@ -127,6 +127,47 @@ const getNftByPrimary = async (id: string) => {
   }
 };
 
+export const likeNft = async (nftId: number, userId: string) => {
+  try {
+    const result = await pool.query(nftQueries.likeNft, [userId, nftId]);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const unlikeNft = async (nftId: number, userId: string) => {
+  try {
+    const result = await pool.query(nftQueries.unlikeNft, [userId, nftId]);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const checkLikedNft = async (nftId: number, userId: string) => {
+  try {
+    const result = await pool.query(
+      "SELECT EXISTS(SELECT 1 FROM likes WHERE user_id = $1 AND nft_id = $2)",
+      [userId, nftId]
+    );
+
+    const isLiked = result.rows[0].exists;
+    return isLiked;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getLikedNft = async (userId: string) => {
+  try {
+    const result = await pool.query(nftQueries.getLikedNft, [userId]);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   createNft,
   deleteNft,

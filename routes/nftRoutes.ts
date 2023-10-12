@@ -1,13 +1,17 @@
 import express from "express";
 import {
   buyNftController,
+  checkLikedNftController,
   createNftController,
   deleteNftController,
   forSaleNftController,
   getAllNftsController,
+  getLikedNftController,
   getNftByIdController,
   getNftByPrimaryController,
   getNftController,
+  likeNftController,
+  unlikeNftController,
   updateNftStatusController,
 } from "../controllers/nftController";
 import verifyToken from "../middlewares/auth";
@@ -22,5 +26,9 @@ nftRouter.get("/getAll", getAllNftsController);
 nftRouter.put("/update-nft/:id", updateNftStatusController);
 nftRouter.get("/get-nft/:id", getNftByIdController);
 nftRouter.get("/get-nft-primary/:id", getNftByPrimaryController);
+nftRouter.post("/like/", likeNftController);
+nftRouter.delete("/unlike", unlikeNftController);
+nftRouter.post("/check", checkLikedNftController);
+nftRouter.get("/get-liked/:id", getLikedNftController);
 
 export default nftRouter;

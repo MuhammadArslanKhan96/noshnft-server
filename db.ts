@@ -44,6 +44,11 @@ createTable(
 );
 
 createTable(
+  "likes",
+  "id SERIAL PRIMARY KEY, user_id INTEGER REFERENCES users(id), nft_id INTEGER REFERENCES nfts(id), UNIQUE(user_id, nft_id)"
+);
+
+createTable(
   "nft_collection",
   "collection_id INTEGER REFERENCES collection(id), nft_id INTEGER REFERENCES nfts(id), PRIMARY KEY (collection_id, nft_id)"
 );
