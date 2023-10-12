@@ -6,6 +6,7 @@ import {
   deleteNftController,
   forSaleNftController,
   getAllNftsController,
+  getAllNftsDetailController,
   getLikedNftController,
   getNftByIdController,
   getNftByPrimaryController,
@@ -30,5 +31,6 @@ nftRouter.post("/like/", likeNftController);
 nftRouter.delete("/unlike", unlikeNftController);
 nftRouter.post("/check", checkLikedNftController);
 nftRouter.get("/get-liked/:id", getLikedNftController);
+nftRouter.get("/get-all-details/", getAllNftsDetailController);
 
 export default nftRouter;

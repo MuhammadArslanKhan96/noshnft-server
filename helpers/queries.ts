@@ -19,6 +19,8 @@ export const nftQueries = {
     "SELECT nfts.*, nfts.name AS nft_name, nfts.description as nft_description, users.name AS creator_name, users.image_url as user_image, collection.* FROM nfts LEFT JOIN users ON nfts.primary_owner = users.id LEFT JOIN nft_collection ON nfts.id = nft_collection.nft_id LEFT JOIN collection ON nft_collection.collection_id = collection.id WHERE nfts.id = $1",
   forSaleNft: "SELECT * FROM nfts where current_owner != $1",
   getAllNfts: "SELECT * FROM nfts",
+  getAllNftsDetails:
+    "SELECT nfts.*, users.name AS creator_name, users.email AS creator_email, collection.id AS collection_id, collection.name AS collection_name, collection.description AS collection_description FROM nfts JOIN users ON nfts.primary_owner = users.id JOIN nft_collection ON nfts.id = nft_collection.nft_id JOIN collection ON nft_collection.collection_id = collection.id",
   updateNftStatus: "UPDATE nfts SET on_sale = $1 WHERE id = $2",
   getNftByPrimary: "SELECT * FROM nfts WHERE primary_owner = $1",
   likeNft: "INSERT INTO likes (user_id, nft_id) VALUES ($1, $2)",

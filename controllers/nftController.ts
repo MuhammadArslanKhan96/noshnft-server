@@ -13,6 +13,7 @@ import {
   unlikeNft,
   checkLikedNft,
   getLikedNft,
+  getAllNftsDetails,
 } from "../models/nft";
 
 export const createNftController = async (
@@ -174,6 +175,17 @@ export const getLikedNftController = async (
 ) => {
   try {
     const result = await getLikedNft(req.params.id);
+    res.status(200).json({ status: "Success", message: "Nft fetched", result });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+export const getAllNftsDetailController = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const result = await getAllNftsDetails();
     res.status(200).json({ status: "Success", message: "Nft fetched", result });
   } catch (error) {
     res.status(500).send(error);

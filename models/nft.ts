@@ -168,6 +168,15 @@ export const getLikedNft = async (userId: string) => {
   }
 };
 
+export const getAllNftsDetails = async () => {
+  try {
+    const result = await pool.query(nftQueries.getAllNftsDetails);
+    return result.rows;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export {
   createNft,
   deleteNft,
