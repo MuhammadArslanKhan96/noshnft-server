@@ -19,6 +19,6 @@ userRouter.get("/get/:id", getUserByIdController);
 userRouter.get("/get-context", getUserContextController);
 userRouter.delete("/delete-user/:id", verifyToken, deleteUserController);
 userRouter.put("/update-password", updatePasswordController);
-userRouter.put("/update-user/:id", updateUserController);
+userRouter.put("/update-user/:id", verifyToken, updateUserController);
 
 export default userRouter;
