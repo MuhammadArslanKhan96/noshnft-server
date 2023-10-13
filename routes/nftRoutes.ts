@@ -21,7 +21,7 @@ const nftRouter = express.Router();
 nftRouter.post("/create/:id", verifyToken, createNftController);
 nftRouter.delete("/delete/:id", deleteNftController);
 nftRouter.put("/update/:id", verifyToken, buyNftController);
-nftRouter.get("/get/:id", verifyToken, getNftController);
+nftRouter.get("/get/:id", getNftController);
 nftRouter.get("/getsale/:id", forSaleNftController);
 nftRouter.get("/getAll", getAllNftsController);
 nftRouter.put("/update-nft/:id", verifyToken, updateNftStatusController);
