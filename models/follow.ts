@@ -5,7 +5,7 @@ interface follow {
   followingId: string;
 }
 
-const createFollow = async (Follow: follow) => {
+export const createFollow = async (Follow: follow) => {
   try {
     const { followerId, followingId } = Follow;
     const result = await pool.query(
@@ -18,7 +18,7 @@ const createFollow = async (Follow: follow) => {
   }
 };
 
-const deleteFollow = async (Follow: follow) => {
+export const deleteFollow = async (Follow: follow) => {
   try {
     const { followerId, followingId } = Follow;
     const result = await pool.query(
@@ -31,7 +31,7 @@ const deleteFollow = async (Follow: follow) => {
   }
 };
 
-const getFollowers = async (id: string) => {
+export const getFollowers = async (id: string) => {
   try {
     const result = await pool.query(
       `SELECT users.* FROM users
@@ -45,7 +45,7 @@ const getFollowers = async (id: string) => {
   }
 };
 
-const getFollowing = async (id: string) => {
+export const getFollowing = async (id: string) => {
   try {
     const result = await pool.query(
       `SELECT users.* FROM users
@@ -59,7 +59,7 @@ const getFollowing = async (id: string) => {
   }
 };
 
-const checkFollowing = async (Follow: follow) => {
+export const checkFollowing = async (Follow: follow) => {
   try {
     const { followerId, followingId } = Follow;
     const result = await pool.query(
@@ -71,12 +71,4 @@ const checkFollowing = async (Follow: follow) => {
   } catch (error) {
     throw error;
   }
-};
-
-export {
-  createFollow,
-  deleteFollow,
-  getFollowers,
-  getFollowing,
-  checkFollowing,
 };

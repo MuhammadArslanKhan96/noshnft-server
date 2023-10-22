@@ -1,18 +1,12 @@
 import express from "express";
-import {
-  createCollection,
-  deleteCollection,
-  getCollection,
-  getAllCollections,
-  getCollectionByUserId,
-} from "../models/collection";
+import * as models from "../models/collection";
 
-export const createCollectionController = async (
+export const createCollection = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    const result = createCollection(req.body);
+    const result = models.createCollection(req.body);
     res
       .status(200)
       .json({ status: "Success", message: "Collection created", result });
@@ -21,24 +15,24 @@ export const createCollectionController = async (
   }
 };
 
-export const deleteCollectionController = async (
+export const deleteCollection = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    deleteCollection();
+    models.deleteCollection();
   } catch (error) {
     throw error;
   }
 };
 
-export const getCollectionController = async (
+export const getCollection = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
     const { id } = req.params;
-    const result = await getCollection(id);
+    const result = await models.getCollection(id);
     res.status(200).json({
       status: "Success",
       message: "Fetched all collections",
@@ -49,12 +43,12 @@ export const getCollectionController = async (
   }
 };
 
-export const getAllCollectionController = async (
+export const getAllCollection = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    const result = await getAllCollections();
+    const result = await models.getAllCollections();
     res.status(200).json({
       status: "Success",
       message: "Fetched all collections",
@@ -65,12 +59,12 @@ export const getAllCollectionController = async (
   }
 };
 
-export const getCollectionByUserIdController = async (
+export const getCollectionByUserId = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    const result = await getCollectionByUserId(req.params.id);
+    const result = await models.getCollectionByUserId(req.params.id);
     res.status(200).json({
       status: "Success",
       message: "Fetched all collections",

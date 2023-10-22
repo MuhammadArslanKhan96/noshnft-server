@@ -27,6 +27,7 @@ export const nftQueries = {
   unlikeNft: "DELETE FROM likes WHERE user_id = $1 AND nft_id = $2",
   getLikedNft:
     "SELECT nfts.* FROM nfts JOIN likes ON nfts.id = likes.nft_id WHERE likes.user_id = $1",
+  updatePrice: "UPDATE nfts SET price = $1 WHERE id = $2",
 };
 
 export const collectionQueries = {

@@ -1,27 +1,12 @@
 import express from "express";
-import {
-  createNft,
-  deleteNft,
-  getNft,
-  getAllNfts,
-  buyNft,
-  forSaleNfts,
-  updateNftStatus,
-  getNftById,
-  getNftByPrimary,
-  likeNft,
-  unlikeNft,
-  checkLikedNft,
-  getLikedNft,
-  getAllNftsDetails,
-} from "../models/nft";
+import * as model from "../models/nft";
 
-export const createNftController = async (
+export const createNft = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    const result = await createNft(req.body);
+    const result = await model.createNft(req.body);
     res.status(200).json({
       status: "Success",
       message: "NFT created successfully",
@@ -32,47 +17,45 @@ export const createNftController = async (
   }
 };
 
-export const deleteNftController = async (
+export const deleteNft = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    await deleteNft(req, res);
+    await model.deleteNft(req, res);
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-export const buyNftController = async (
-  req: express.Request,
-  res: express.Response
-) => {
+export const buyNft = async (req: express.Request, res: express.Response) => {
   try {
-    const result = await buyNft(req.body.id, req.body.status, req.params.id);
+    const result = await model.buyNft(
+      req.body.id,
+      req.body.status,
+      req.params.id
+    );
     res.status(200).json({ status: "Success", message: "Nft bought", result });
   } catch (error) {
     res.status(400).send(error);
   }
 };
 
-export const getNftController = async (
-  req: express.Request,
-  res: express.Response
-) => {
+export const getNft = async (req: express.Request, res: express.Response) => {
   try {
-    const result = await getNft(req.params.id);
+    const result = await model.getNft(req.params.id);
     res.status(200).json({ status: "Success", message: "Nft fetched", result });
   } catch (error) {
     res.status(400).send(error);
   }
 };
 
-export const getAllNftsController = async (
+export const getAllNfts = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    const result = await getAllNfts();
+    const result = await model.getAllNfts();
     res
       .status(200)
       .json({ status: "Success", message: "Nfts fetched", result });
@@ -81,23 +64,23 @@ export const getAllNftsController = async (
   }
 };
 
-export const forSaleNftController = async (
+export const forSaleNft = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    const result = await forSaleNfts(req.params.id);
+    const result = await model.forSaleNfts(req.params.id);
     res.status(200).json({ status: "Success", message: "Nft fetched", result });
   } catch (error) {
     res.status(401).send(error);
   }
 };
 
-export const updateNftStatusController = async (
+export const updateNftStatus = async (
   req: express.Request,
   res: express.Response
 ) => {
-  const result = await updateNftStatus(req.params.id, req.body.status);
+  const result = await model.updateNftStatus(req.params.id, req.body.status);
   res.status(200).json({ status: "Success", message: "Nft Updated", result });
   try {
   } catch (error) {
@@ -105,11 +88,11 @@ export const updateNftStatusController = async (
   }
 };
 
-export const getNftByIdController = async (
+export const getNftById = async (
   req: express.Request,
   res: express.Response
 ) => {
-  const result = await getNftById(req.params.id);
+  const result = await model.getNftById(req.params.id);
   res
     .status(200)
     .json({ status: "Success", message: "Nft Fetched by Id", result });
@@ -119,11 +102,11 @@ export const getNftByIdController = async (
   }
 };
 
-export const getNftByPrimaryController = async (
+export const getNftByPrimary = async (
   req: express.Request,
   res: express.Response
 ) => {
-  const result = await getNftByPrimary(req.params.id);
+  const result = await model.getNftByPrimary(req.params.id);
   res
     .status(200)
     .json({ status: "Success", message: "Nft Fetched by Id", result });
@@ -133,23 +116,20 @@ export const getNftByPrimaryController = async (
   }
 };
 
-export const likeNftController = async (
-  req: express.Request,
-  res: express.Response
-) => {
+export const likeNft = async (req: express.Request, res: express.Response) => {
   try {
-    const result = await likeNft(req.body.nftId, req.body.userId);
+    const result = await model.likeNft(req.body.nftId, req.body.userId);
     res.status(200).json({ status: "Success", message: "Nft liked", result });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-export const unlikeNftController = async (
+export const unlikeNft = async (
   req: express.Request,
   res: express.Response
 ) => {
-  const result = await unlikeNft(req.body.nftId, req.body.userId);
+  const result = await model.unlikeNft(req.body.nftId, req.body.userId);
   res.status(200).json({ status: "Success", message: "Nft unliked", result });
   try {
   } catch (error) {
@@ -157,36 +137,50 @@ export const unlikeNftController = async (
   }
 };
 
-export const checkLikedNftController = async (
+export const checkLikedNft = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    const result = await checkLikedNft(req.body.nftId, req.body.userId);
+    const result = await model.checkLikedNft(req.body.nftId, req.body.userId);
     res.status(200).json({ result });
   } catch (error) {
     res.status(500).send(error);
   }
 };
 
-export const getLikedNftController = async (
+export const getLikedNft = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    const result = await getLikedNft(req.params.id);
+    const result = await model.getLikedNft(req.params.id);
     res.status(200).json({ status: "Success", message: "Nft fetched", result });
   } catch (error) {
     res.status(500).send(error);
   }
 };
-export const getAllNftsDetailController = async (
+export const getAllNftsDetail = async (
   req: express.Request,
   res: express.Response
 ) => {
   try {
-    const result = await getAllNftsDetails();
+    const result = await model.getAllNftsDetails();
     res.status(200).json({ status: "Success", message: "Nft fetched", result });
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
+
+export const updatePrice = async (
+  req: express.Request,
+  res: express.Response
+) => {
+  try {
+    const result = await model.updatePrice(req.body.price, req.body.id);
+    res
+      .status(200)
+      .json({ status: "Success", message: "Price updated", result });
   } catch (error) {
     res.status(500).send(error);
   }

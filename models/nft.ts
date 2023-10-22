@@ -17,7 +17,7 @@ interface nft {
   collectionId: number;
 }
 
-const createNft = async (Nft: nft) => {
+export const createNft = async (Nft: nft) => {
   try {
     const {
       name,
@@ -58,13 +58,16 @@ const createNft = async (Nft: nft) => {
     throw error;
   }
 };
-const deleteNft = async (req: express.Request, res: express.Response) => {
+export const deleteNft = async (
+  req: express.Request,
+  res: express.Response
+) => {
   try {
   } catch (error) {
     throw error;
   }
 };
-const buyNft = async (nftId: number, status: boolean, id: string) => {
+export const buyNft = async (nftId: number, status: boolean, id: string) => {
   try {
     const result = await pool.query(nftQueries.buyNft, [id, status, nftId]);
     return result;
@@ -72,7 +75,7 @@ const buyNft = async (nftId: number, status: boolean, id: string) => {
     throw error;
   }
 };
-const getNft = async (id: string) => {
+export const getNft = async (id: string) => {
   try {
     const result = await pool.query(nftQueries.getNft, [id]);
     return result.rows;
@@ -80,7 +83,7 @@ const getNft = async (id: string) => {
     throw error;
   }
 };
-const getAllNfts = async () => {
+export const getAllNfts = async () => {
   try {
     const result = await pool.query(nftQueries.getAllNfts);
     return result.rows;
@@ -88,7 +91,7 @@ const getAllNfts = async () => {
     throw error;
   }
 };
-const forSaleNfts = async (id: string) => {
+export const forSaleNfts = async (id: string) => {
   try {
     const result = await pool.query(nftQueries.forSaleNft, [id]);
     return result.rows;
@@ -97,7 +100,7 @@ const forSaleNfts = async (id: string) => {
   }
 };
 
-const updateNftStatus = async (nftId: string, status: boolean) => {
+export const updateNftStatus = async (nftId: string, status: boolean) => {
   try {
     const result = await pool.query(nftQueries.updateNftStatus, [
       status,
@@ -109,7 +112,7 @@ const updateNftStatus = async (nftId: string, status: boolean) => {
   }
 };
 
-const getNftById = async (nftId: string) => {
+export const getNftById = async (nftId: string) => {
   try {
     const result = await pool.query(nftQueries.getNftById, [nftId]);
     return result.rows;
@@ -118,7 +121,7 @@ const getNftById = async (nftId: string) => {
   }
 };
 
-const getNftByPrimary = async (id: string) => {
+export const getNftByPrimary = async (id: string) => {
   try {
     const result = await pool.query(nftQueries.getNftByPrimary, [id]);
     return result.rows;
@@ -177,14 +180,10 @@ export const getAllNftsDetails = async () => {
   }
 };
 
-export {
-  createNft,
-  deleteNft,
-  getNft,
-  getAllNfts,
-  buyNft,
-  forSaleNfts,
-  updateNftStatus,
-  getNftById,
-  getNftByPrimary,
+export const updatePrice = async (price: string, nftId: string) => {
+  try {
+    const result = await pool.query(nftQueries.updatePrice, [price, nftId]);
+  } catch (error) {
+    throw error;
+  }
 };

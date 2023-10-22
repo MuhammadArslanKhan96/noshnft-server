@@ -1,22 +1,16 @@
 import express from "express";
-import {
-  createCollectionController,
-  deleteCollectionController,
-  getCollectionController,
-  getAllCollectionController,
-  getCollectionByUserIdController,
-} from "../controllers/collectionController";
+import * as controllers from "../controllers/collectionController";
 import verifyToken from "../middlewares/auth";
 const collectionRouter = express.Router();
 
-collectionRouter.post("/create/:id", verifyToken, createCollectionController);
-collectionRouter.delete("/delete/:id", deleteCollectionController);
-collectionRouter.get("/get/:id", verifyToken, getCollectionController);
-collectionRouter.get("/getAll", getAllCollectionController);
+collectionRouter.post("/create/:id", verifyToken, controllers.createCollection);
+collectionRouter.delete("/delete/:id", controllers.deleteCollection);
+collectionRouter.get("/get/:id", verifyToken, controllers.getCollection);
+collectionRouter.get("/getAll", controllers.getAllCollection);
 collectionRouter.get(
   "/get-user/:id",
   verifyToken,
-  getCollectionByUserIdController
+  controllers.getCollectionByUserId
 );
 
 export default collectionRouter;

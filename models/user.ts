@@ -21,7 +21,7 @@ interface user {
 }
 
 // Get User For Context API
-const getUserContext = async (token: string) => {
+export const getUserContext = async (token: string) => {
   try {
     const decodedToken = jwt.decode(token);
     if (typeof decodedToken === "object" && decodedToken !== null) {
@@ -35,7 +35,7 @@ const getUserContext = async (token: string) => {
 };
 
 // Get All Users
-const getAllUser = async () => {
+export const getAllUser = async () => {
   try {
     const result = await pool.query(userQueries.getAllUser);
     return result.rows;
@@ -45,7 +45,7 @@ const getAllUser = async () => {
 };
 
 // Get User By Id
-const getUserById = async (id: string) => {
+export const getUserById = async (id: string) => {
   try {
     const result = await pool.query(userQueries.getUserById, [id]);
     return result.rows;
@@ -55,7 +55,7 @@ const getUserById = async (id: string) => {
 };
 
 // Sign Up User
-const signUpUser = async (User: user) => {
+export const signUpUser = async (User: user) => {
   const { name, email, password } = User;
   const hashedPassword = await bcrypt.hash(password, 10);
   try {
@@ -71,7 +71,7 @@ const signUpUser = async (User: user) => {
 };
 
 // Login User
-const loginUser = async (User: user) => {
+export const loginUser = async (User: user) => {
   const { email, password } = User;
   const result = await pool.query(userQueries.getUser, [email]);
   if (result.rows.length > 0) {
@@ -95,7 +95,7 @@ const loginUser = async (User: user) => {
 };
 
 // Delete User By Id
-const deleteUser = async (id: string) => {
+export const deleteUser = async (id: string) => {
   try {
     const result = await pool.query(userQueries.deleteUser, [id]);
     return result.rows;
@@ -105,7 +105,7 @@ const deleteUser = async (id: string) => {
 };
 
 // Update User Password
-const updatePassword = async (User: user) => {
+export const updatePassword = async (User: user) => {
   const { email, newPassword } = User;
   const result = await pool.query(userQueries.getUser, [email]);
   if (result.rows.length > 0) {
@@ -118,7 +118,7 @@ const updatePassword = async (User: user) => {
 };
 
 // Update User Profile
-const updateUser = async (User: user, id: string) => {
+export const updateUser = async (User: user, id: string) => {
   try {
     const {
       name,
@@ -147,15 +147,4 @@ const updateUser = async (User: user, id: string) => {
   } catch (error) {
     throw error;
   }
-};
-
-export {
-  getUserContext,
-  signUpUser,
-  loginUser,
-  deleteUser,
-  updatePassword,
-  getAllUser,
-  getUserById,
-  updateUser,
 };

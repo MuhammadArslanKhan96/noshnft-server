@@ -1,36 +1,22 @@
 import express from "express";
-import {
-  buyNftController,
-  checkLikedNftController,
-  createNftController,
-  deleteNftController,
-  forSaleNftController,
-  getAllNftsController,
-  getAllNftsDetailController,
-  getLikedNftController,
-  getNftByIdController,
-  getNftByPrimaryController,
-  getNftController,
-  likeNftController,
-  unlikeNftController,
-  updateNftStatusController,
-} from "../controllers/nftController";
+import * as controllers from "../controllers/nftController";
 import verifyToken from "../middlewares/auth";
 const nftRouter = express.Router();
 
-nftRouter.post("/create/:id", verifyToken, createNftController);
-nftRouter.delete("/delete/:id", deleteNftController);
-nftRouter.put("/update/:id", verifyToken, buyNftController);
-nftRouter.get("/get/:id", getNftController);
-nftRouter.get("/getsale/:id", forSaleNftController);
-nftRouter.get("/getAll", getAllNftsController);
-nftRouter.put("/update-nft/:id", verifyToken, updateNftStatusController);
-nftRouter.get("/get-nft/:id", getNftByIdController);
-nftRouter.get("/get-nft-primary/:id", getNftByPrimaryController);
-nftRouter.post("/like/", likeNftController);
-nftRouter.delete("/unlike", unlikeNftController);
-nftRouter.post("/check", checkLikedNftController);
-nftRouter.get("/get-liked/:id", getLikedNftController);
-nftRouter.get("/get-all-details/", getAllNftsDetailController);
+nftRouter.post("/create/:id", verifyToken, controllers.createNft);
+nftRouter.delete("/delete/:id", controllers.deleteNft);
+nftRouter.put("/update/:id", verifyToken, controllers.buyNft);
+nftRouter.get("/get/:id", controllers.getNft);
+nftRouter.get("/getsale/:id", controllers.forSaleNft);
+nftRouter.get("/getAll", controllers.getAllNfts);
+nftRouter.put("/update-nft/:id", verifyToken, controllers.updateNftStatus);
+nftRouter.get("/get-nft/:id", controllers.getNftById);
+nftRouter.get("/get-nft-primary/:id", controllers.getNftByPrimary);
+nftRouter.post("/like/", controllers.likeNft);
+nftRouter.delete("/unlike", controllers.unlikeNft);
+nftRouter.post("/check", controllers.checkLikedNft);
+nftRouter.get("/get-liked/:id", controllers.getLikedNft);
+nftRouter.get("/get-all-details/", controllers.getAllNftsDetail);
+nftRouter.put("/update-price", controllers.updatePrice);
 
 export default nftRouter;

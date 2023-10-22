@@ -51,7 +51,7 @@ app.post(
   }
 );
 
-app.get("/", (req: express.Request, res: express.Response) => {
+app.get("/", (res: express.Response) => {
   res.status(200).json({ message: "hello" });
 });
 
