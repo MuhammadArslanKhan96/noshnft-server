@@ -25,7 +25,7 @@ const createTable = async (tableName: string, columns: string) => {
 
 createTable(
   "users",
-  "id SERIAL PRIMARY KEY , name TEXT NOT NULL, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL, bio TEXT, website TEXT, facebook TEXT, twitter TEXT, telegram TEXT, image_name TEXT, image_url TEXT"
+  "id SERIAL PRIMARY KEY, name TEXT NOT NULL, email TEXT NOT NULL UNIQUE, password TEXT NOT NULL, bio TEXT, website TEXT, facebook TEXT, twitter TEXT, telegram TEXT, image_name TEXT, image_url TEXT, wallet_address TEXT"
 );
 
 createTable(
@@ -40,7 +40,7 @@ createTable(
 
 createTable(
   "nfts",
-  "id SERIAL PRIMARY KEY, name TEXT, nft_url TEXT, image_name TEXT, image_url TEXT, description TEXT, royalties TEXT, size TEXT, properties TEXT, price TEXT, on_sale BOOLEAN, primary_owner INTEGER REFERENCES users(id), current_owner INTEGER REFERENCES users(id)"
+  "id SERIAL PRIMARY KEY, name TEXT, nft_url TEXT, image_name TEXT, image_url TEXT, description TEXT, royalties TEXT, size TEXT, properties TEXT, price TEXT, on_sale BOOLEAN, primary_owner INTEGER REFERENCES users(id), current_owner INTEGER REFERENCES users(id), owner_wallet TEXT"
 );
 
 createTable(
