@@ -16,6 +16,7 @@ interface nft {
   currentOwner: string;
   ownerWallet: string;
   collectionId: number;
+  tokenId: number | bigint;
 }
 
 export const createNft = async (Nft: nft) => {
@@ -35,6 +36,7 @@ export const createNft = async (Nft: nft) => {
       currentOwner,
       ownerWallet,
       collectionId,
+      tokenId,
     } = Nft;
 
     const result = await pool.query(nftQueries.createNft, [
@@ -51,6 +53,7 @@ export const createNft = async (Nft: nft) => {
       primaryOwner,
       currentOwner,
       ownerWallet,
+      tokenId,
     ]);
     const nftId = result.rows[0].id;
     await pool.query(nftCollectionQueries.createNftCollection, [

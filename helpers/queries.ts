@@ -11,7 +11,7 @@ export const userQueries = {
 
 export const nftQueries = {
   createNft:
-    "INSERT INTO nfts (name, nft_url, image_name, image_url, description, royalties, size, properties, price, on_sale, primary_owner, current_owner, owner_wallet) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING id",
+    "INSERT INTO nfts (name, nft_url, image_name, image_url, description, royalties, size, properties, price, on_sale, primary_owner, current_owner, owner_wallet, token_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING id",
   deleteNft: "DELETE FROM nfts WHERE id = $1",
   buyNft: "UPDATE nfts SET current_owner = $1, on_sale = $2 WHERE id = $3",
   getNft: "SELECT * FROM nfts WHERE current_owner = $1",
