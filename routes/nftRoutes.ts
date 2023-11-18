@@ -3,7 +3,7 @@ import * as controllers from "../controllers/nftController";
 import verifyToken from "../middlewares/auth";
 const nftRouter = express.Router();
 
-nftRouter.post("/create/:id", verifyToken, controllers.createNft);
+nftRouter.post("/create/:id", controllers.createNft);
 nftRouter.delete("/delete/:id", controllers.deleteNft);
 nftRouter.put("/update/:id", verifyToken, controllers.buyNft);
 nftRouter.get("/get/:id", controllers.getNft);
