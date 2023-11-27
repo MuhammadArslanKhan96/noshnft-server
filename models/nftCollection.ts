@@ -1,19 +1,7 @@
 import { pool } from "../db";
 import { nftCollectionQueries } from "../helpers/queries";
 
-const createNftCollection = async () => {
-  try {
-  } catch (error) {
-    throw error;
-  }
-};
-const deleteNftCollection = async () => {
-  try {
-  } catch (error) {
-    throw error;
-  }
-};
-const getNftCollection = async (id: string) => {
+export const getNftCollection = async (id: string) => {
   try {
     const result = await pool.query(nftCollectionQueries.getNftCollection, [
       id,
@@ -23,5 +11,3 @@ const getNftCollection = async (id: string) => {
     throw error;
   }
 };
-
-export { createNftCollection, deleteNftCollection, getNftCollection };

@@ -17,16 +17,16 @@ export const createNft = async (
   }
 };
 
-export const deleteNft = async (
-  req: express.Request,
-  res: express.Response
-) => {
-  try {
-    await model.deleteNft(req, res);
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
+// export const deleteNft = async (
+//   req: express.Request,
+//   res: express.Response
+// ) => {
+//   try {
+//     await model.deleteNft(req, res);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// };
 
 export const buyNft = async (req: express.Request, res: express.Response) => {
   try {
@@ -64,17 +64,17 @@ export const getAllNfts = async (
   }
 };
 
-export const forSaleNft = async (
-  req: express.Request,
-  res: express.Response
-) => {
-  try {
-    const result = await model.forSaleNfts(req.params.id);
-    res.status(200).json({ status: "Success", message: "Nft fetched", result });
-  } catch (error) {
-    res.status(401).send(error);
-  }
-};
+// export const forSaleNft = async (
+//   req: express.Request,
+//   res: express.Response
+// ) => {
+//   try {
+//     const result = await model.forSaleNfts(req.params.id);
+//     res.status(200).json({ status: "Success", message: "Nft fetched", result });
+//   } catch (error) {
+//     res.status(401).send(error);
+//   }
+// };
 
 export const updateNftStatus = async (
   req: express.Request,

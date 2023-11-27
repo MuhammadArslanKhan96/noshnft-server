@@ -1,9 +1,5 @@
 import { pool } from "../db";
-
-interface follow {
-  followerId: string;
-  followingId: string;
-}
+import follow from "../types/follow";
 
 export const createFollow = async (Follow: follow) => {
   try {

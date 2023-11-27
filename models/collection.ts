@@ -1,10 +1,7 @@
 import { pool } from "../db";
 import { collectionQueries } from "../helpers/queries";
-interface collection {
-  name: string;
-  description: string;
-  primaryOwner: string;
-}
+import collection from "../types/collection";
+
 const createCollection = async (Collection: collection) => {
   try {
     const { name, description, primaryOwner } = Collection;

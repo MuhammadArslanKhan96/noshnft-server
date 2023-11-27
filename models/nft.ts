@@ -1,23 +1,7 @@
 import express from "express";
+import nft from "../types/nft";
 import { pool } from "../db";
 import { nftQueries, nftCollectionQueries } from "../helpers/queries";
-interface nft {
-  name: string;
-  nftUrl: string;
-  imageName: string;
-  imageUrl: string;
-  description: string;
-  royalties: string;
-  size: string;
-  properties: string;
-  price: string;
-  onSale: boolean;
-  primaryOwner: string;
-  currentOwner: string;
-  ownerWallet: string;
-  collectionId: number;
-  tokenId: number | bigint;
-}
 
 export const createNft = async (Nft: nft) => {
   try {

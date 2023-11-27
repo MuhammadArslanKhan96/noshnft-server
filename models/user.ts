@@ -1,24 +1,11 @@
-import { pool } from "../db";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 import { userQueries } from "../helpers/queries";
 import { config } from "dotenv";
+import { pool } from "../db";
+import bcrypt from "bcrypt";
+import user from "../types/user";
+import jwt from "jsonwebtoken";
 config({ path: ".env.local" });
-
 const jwtKey = process.env.JWT_SECRET_KEY;
-interface user {
-  name: string;
-  email: string;
-  password: string;
-  newPassword: string;
-  bio: string;
-  website: string;
-  facebook: string;
-  twitter: string;
-  telegram: string;
-  imageName: string;
-  imageUrl: string;
-}
 
 // Get User For Context API
 export const getUserContext = async (token: string) => {

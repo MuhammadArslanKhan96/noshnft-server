@@ -4,10 +4,10 @@ import verifyToken from "../middlewares/auth";
 const nftRouter = express.Router();
 
 nftRouter.post("/create/:id", verifyToken, controllers.createNft);
-nftRouter.delete("/delete/:id", controllers.deleteNft);
+// nftRouter.delete("/delete/:id", controllers.deleteNft);
 nftRouter.put("/update/:id", verifyToken, controllers.buyNft);
 nftRouter.get("/get/:id", controllers.getNft);
-nftRouter.get("/getsale/:id", controllers.forSaleNft);
+// nftRouter.get("/getsale/:id", controllers.forSaleNft);
 nftRouter.get("/getAll", controllers.getAllNfts);
 nftRouter.put("/update-nft/:id", verifyToken, controllers.updateNftStatus);
 nftRouter.get("/get-nft/:id", controllers.getNftById);

@@ -1,15 +1,7 @@
 import express from "express";
-import { nftCollectionController } from "../controllers/nftCollectionController";
+import { getNftCollection } from "../models/nftCollection";
 const nftCollectionRouter = express.Router();
 
-nftCollectionRouter.post(
-  "/create",
-  nftCollectionController.createNftCollection
-);
-nftCollectionRouter.delete(
-  "/delete/:id",
-  nftCollectionController.deleteNftCollection
-);
-nftCollectionRouter.get("/get/:id", nftCollectionController.getNftCollection);
+nftCollectionRouter.get("/get/:id", getNftCollection);
 
 export default nftCollectionRouter;

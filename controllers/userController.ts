@@ -1,19 +1,19 @@
 import express from "express";
 import * as model from "../models/user";
 
-export const getAllUser = async (
-  req: express.Request,
-  res: express.Response
-) => {
-  try {
-    const result = await model.getAllUser();
-    res
-      .status(201)
-      .json({ status: "Success", message: "User fetched.", result });
-  } catch (error) {
-    res.status(401).send(error);
-  }
-};
+// export const getAllUser = async (
+//   req: express.Request,
+//   res: express.Response
+// ) => {
+//   try {
+//     const result = await model.getAllUser();
+//     res
+//       .status(201)
+//       .json({ status: "Success", message: "User fetched.", result });
+//   } catch (error) {
+//     res.status(401).send(error);
+//   }
+// };
 
 export const getUserContext = async (
   req: express.Request,
@@ -25,7 +25,7 @@ export const getUserContext = async (
     );
     res.status(200).json(result);
   } catch (error) {
-    res.status(400).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -40,7 +40,7 @@ export const getUserById = async (
       .status(201)
       .json({ status: "Success", message: "User fetched.", result });
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
