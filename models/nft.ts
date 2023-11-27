@@ -81,14 +81,14 @@ export const getAllNfts = async () => {
     throw error;
   }
 };
-export const forSaleNfts = async (id: string) => {
-  try {
-    const result = await pool.query(nftQueries.forSaleNft, [id]);
-    return result.rows;
-  } catch (error) {
-    throw error;
-  }
-};
+// export const forSaleNfts = async (id: string) => {
+//   try {
+//     const result = await pool.query(nftQueries.forSaleNft, [id]);
+//     return result.rows;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export const updateNftStatus = async (nftId: string, status: boolean) => {
   try {

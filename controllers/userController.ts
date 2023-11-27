@@ -80,20 +80,20 @@ export const loginUser = async (
   }
 };
 
-export const deleteUser = async (
-  req: express.Request,
-  res: express.Response
-) => {
-  try {
-    const id = req.params.id;
-    const result = await model.deleteUser(id);
-    res
-      .status(200)
-      .json({ status: "Success", message: "User deleted", result });
-  } catch (error) {
-    res.status(500).send(error);
-  }
-};
+// export const deleteUser = async (
+//   req: express.Request,
+//   res: express.Response
+// ) => {
+//   try {
+//     const id = req.params.id;
+//     const result = await model.deleteUser(id);
+//     res
+//       .status(200)
+//       .json({ status: "Success", message: "User deleted", result });
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// };
 
 export const updatePassword = async (
   req: express.Request,

@@ -15,12 +15,13 @@ const createCollection = async (Collection: collection) => {
     throw error;
   }
 };
-const deleteCollection = async () => {
-  try {
-  } catch (error) {
-    throw error;
-  }
-};
+// const deleteCollection = async () => {
+//   try {
+//   } catch (error) {
+//     throw error;
+//   }
+// };
+
 const getCollection = async (id: string) => {
   try {
     const result = await pool.query(collectionQueries.getCollectionById, [id]);
@@ -48,7 +49,6 @@ const getCollectionByUserId = async (id: string) => {
 
 export {
   createCollection,
-  deleteCollection,
   getCollection,
   getAllCollections,
   getCollectionByUserId,

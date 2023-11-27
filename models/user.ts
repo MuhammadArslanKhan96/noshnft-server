@@ -22,14 +22,14 @@ export const getUserContext = async (token: string) => {
 };
 
 // Get All Users
-export const getAllUser = async () => {
-  try {
-    const result = await pool.query(userQueries.getAllUser);
-    return result.rows;
-  } catch (error) {
-    throw error;
-  }
-};
+// export const getAllUser = async () => {
+//   try {
+//     const result = await pool.query(userQueries.getAllUser);
+//     return result.rows;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 // Get User By Id
 export const getUserById = async (id: string) => {
@@ -82,14 +82,14 @@ export const loginUser = async (User: user) => {
 };
 
 // Delete User By Id
-export const deleteUser = async (id: string) => {
-  try {
-    const result = await pool.query(userQueries.deleteUser, [id]);
-    return result.rows;
-  } catch (error) {
-    throw error;
-  }
-};
+// export const deleteUser = async (id: string) => {
+//   try {
+//     const result = await pool.query(userQueries.deleteUser, [id]);
+//     return result.rows;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 // Update User Password
 export const updatePassword = async (User: user) => {

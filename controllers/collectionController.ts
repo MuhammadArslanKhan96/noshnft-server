@@ -15,16 +15,16 @@ export const createCollection = async (
   }
 };
 
-export const deleteCollection = async (
-  req: express.Request,
-  res: express.Response
-) => {
-  try {
-    models.deleteCollection();
-  } catch (error) {
-    throw error;
-  }
-};
+// export const deleteCollection = async (
+//   req: express.Request,
+//   res: express.Response
+// ) => {
+//   try {
+//     models.deleteCollection();
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
 export const getCollection = async (
   req: express.Request,
