@@ -57,9 +57,19 @@ export const deleteNft = async (
     throw error;
   }
 };
-export const buyNft = async (nftId: number, status: boolean, id: string) => {
+export const buyNft = async (
+  userId: string,
+  owner_wallet: string,
+  status: boolean,
+  nftId: number
+) => {
   try {
-    const result = await pool.query(nftQueries.buyNft, [id, status, nftId]);
+    const result = await pool.query(nftQueries.buyNft, [
+      userId,
+      owner_wallet,
+      status,
+      nftId,
+    ]);
     return result;
   } catch (error) {
     throw error;

@@ -13,7 +13,7 @@ export const createNft = async (
       result,
     });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -31,13 +31,14 @@ export const createNft = async (
 export const buyNft = async (req: express.Request, res: express.Response) => {
   try {
     const result = await model.buyNft(
-      req.body.id,
+      req.params.id,
+      req.body.owner_wallet,
       req.body.status,
-      req.params.id
+      req.body.id
     );
     res.status(200).json({ status: "Success", message: "Nft bought", result });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -46,7 +47,7 @@ export const getNft = async (req: express.Request, res: express.Response) => {
     const result = await model.getNft(req.params.id);
     res.status(200).json({ status: "Success", message: "Nft fetched", result });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -60,7 +61,7 @@ export const getAllNfts = async (
       .status(200)
       .json({ status: "Success", message: "Nfts fetched", result });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(500).send(error);
   }
 };
 
@@ -84,7 +85,7 @@ export const updateNftStatus = async (
   res.status(200).json({ status: "Success", message: "Nft Updated", result });
   try {
   } catch (error) {
-    res.status(401).send(error);
+    res.status(500).send(error);
   }
 };
 
