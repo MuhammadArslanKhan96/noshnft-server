@@ -33,7 +33,7 @@ export const nftQueries = {
 
 export const collectionQueries = {
   createCollection:
-    "INSERT INTO collection (address, name, symbol, description, primary_owner) VALUES ($1, $2, $3, $4, $5)",
+    "INSERT INTO collection (name, description, primary_owner, symbol, address) VALUES ($1, $2, $3, $4, $5)",
   // deleteCollection: "DELETE FROM collection WHERE id = $1",
   getCollectionById:
     "SELECT collection.id AS collection_id, collection.name AS collection_name, collection.description AS collection_description, users.id AS user_id,users.name AS user_name,users.email AS user_email,users.image_url AS user_image_url,json_agg(json_build_object('nft_name', nfts.name,'nft_description', nfts.description,'nft_price', nfts.price,'nft_image_url', nfts.image_url)) AS nfts FROM collection JOIN users ON collection.primary_owner = users.id JOIN nft_collection ON nft_collection.collection_id = collection.id JOIN nfts ON nfts.id = nft_collection.nft_id WHERE users.id = $1 GROUP BY collection.id, users.id",

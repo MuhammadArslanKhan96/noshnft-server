@@ -4,13 +4,13 @@ import collection from "../types/collection";
 
 const createCollection = async (Collection: collection) => {
   try {
-    const { address, name, symbol, description, primaryOwner } = Collection;
+    const { name, description, primaryOwner, symbol, address } = Collection;
     const result = await pool.query(collectionQueries.createCollection, [
-      address,
       name,
-      symbol,
       description,
       primaryOwner,
+      symbol,
+      address,
     ]);
     return result;
   } catch (error) {
