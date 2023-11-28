@@ -4,9 +4,11 @@ import collection from "../types/collection";
 
 const createCollection = async (Collection: collection) => {
   try {
-    const { name, description, primaryOwner } = Collection;
+    const { address, name, symbol, description, primaryOwner } = Collection;
     const result = await pool.query(collectionQueries.createCollection, [
+      address,
       name,
+      symbol,
       description,
       primaryOwner,
     ]);
@@ -15,12 +17,6 @@ const createCollection = async (Collection: collection) => {
     throw error;
   }
 };
-// const deleteCollection = async () => {
-//   try {
-//   } catch (error) {
-//     throw error;
-//   }
-// };
 
 const getCollection = async (id: string) => {
   try {

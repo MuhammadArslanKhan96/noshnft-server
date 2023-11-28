@@ -35,7 +35,7 @@ createTable(
 
 createTable(
   "collection",
-  "id SERIAL PRIMARY KEY, name TEXT, description TEXT, primary_owner INTEGER REFERENCES users(id)"
+  "id SERIAL PRIMARY KEY, address TEXT, name TEXT, symbol TEXT, description TEXT, primary_owner INTEGER REFERENCES users(id)"
 );
 
 createTable(
