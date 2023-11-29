@@ -14,6 +14,7 @@ type nft = {
   ownerWallet: string;
   collectionId: number;
   tokenId: number | bigint;
+  collectionAddress: string;
 };
 
 export default nft;
