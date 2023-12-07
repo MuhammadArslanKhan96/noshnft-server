@@ -47,5 +47,4 @@ export const nftCollectionQueries = {
     "INSERT INTO nft_collection (collection_id, nft_id) VALUES ($1, $2)",
   getNftCollection:
     "SELECT nft_collection.*, nfts.* FROM nft_collection JOIN nfts ON nft_collection.nft_id = nfts.id WHERE collection_id = $1",
-  // deleteNftCollection: "DELETE FROM collection WHERE id = $1",
 };
